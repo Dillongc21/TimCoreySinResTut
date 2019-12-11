@@ -6,7 +6,21 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            StandardMessages.WelcomeMessage();
+
+            Person user = PersonDataCapture.Capture();
+
+            bool isUserValid = PersonalValidator.Validate(user);
+
+            if (isUserValid == false)
+            {
+                StandardMessages.EndApplication();
+                return;
+            }
+
+            AccountGenerator.CreateAccount(user);
+
+            StandardMessages.EndApplication();
         }
     }
 }
